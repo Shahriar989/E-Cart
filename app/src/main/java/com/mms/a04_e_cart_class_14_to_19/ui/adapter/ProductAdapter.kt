@@ -45,7 +45,8 @@ class ProductAdapter(
                 productsItem.id,
                 productsItem.image,
                 productsItem.price,
-                productsItem.title
+                productsItem.title,
+                1
             )
             cartAddListener.cartAdd(cart)
         }

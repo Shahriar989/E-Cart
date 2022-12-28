@@ -56,7 +56,7 @@ class HomeFragment : Fragment(), CtgListener {
             )
         )
         val adapter: SliderAdapter = SliderAdapter(requireActivity(), sliderList)
-            binding.banner.setSliderAdapter(adapter)
+        binding.banner.setSliderAdapter(adapter)
     }
 
     override fun ctgClickListener(category: Category) {

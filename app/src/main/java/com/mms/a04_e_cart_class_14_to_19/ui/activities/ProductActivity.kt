@@ -2,6 +2,7 @@ package com.mms.a04_e_cart_class_14_to_19.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -62,10 +63,11 @@ class ProductActivity : AppCompatActivity(), CartAddListener {
                 productsItem = response.body()!!
 
                 setupRecyclerView()
+                Log.i("TAG", "onResponse: ${productsItem[0]}")
             }
 
             override fun onFailure(call: Call<List<ProductsItem>>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.i("TAG", "onFailure: ${t.localizedMessage}")
             }
         })
     }

@@ -19,13 +19,16 @@ class CartViewModel(application: Application)
             val db = CartDatabase.getDatabase(application.applicationContext)
             repo = CartRepositories(db)
         }
-    fun insertCart(cart: ProductCart) = CoroutineScope(Dispatchers.IO).launch {
+    fun insertCart(cart: ProductCart) = CoroutineScope(Dispatchers.IO)
+        .launch {
         repo.insertCart(cart)
     }
-    fun updateCart(cart: ProductCart) = CoroutineScope(Dispatchers.IO).launch {
+    fun updateCart(cart: ProductCart) = CoroutineScope(Dispatchers.IO)
+        .launch {
         repo.updateCart(cart)
     }
-    fun deleteCart(cart: ProductCart) = CoroutineScope(Dispatchers.IO).launch {
+    fun deleteCart(cart: ProductCart) = CoroutineScope(Dispatchers.IO)
+        .launch {
         repo.deleteCart(cart)
     }
 

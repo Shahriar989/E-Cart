@@ -17,7 +17,9 @@ data class ProductCart(
     @ColumnInfo
     val price: Double,
     @ColumnInfo
-    val title: String
+    val title: String,
+    @ColumnInfo
+    val quantity: Int
 ) {
     @PrimaryKey(autoGenerate = false)
     var pId = id
