@@ -26,14 +26,14 @@ class CartFragment : Fragment(), CartListener {
     ): View? {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        cartViewModel= ViewModelProvider(this)[CartViewModel::class.java]
-        cartViewModel.getAllCart().observe(viewLifecycleOwner){
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
+        cartViewModel.getAllCart().observe(viewLifecycleOwner) {
 
             val adapter = CartAdapter(requireActivity(), it, this)
-            binding.cartRecyclerView.adapter= adapter
+            binding.cartRecyclerView.adapter = adapter
             binding.cartRecyclerView.setHasFixedSize(true)
 
-            binding.amountToPay.text= "Amount to pay: ${getTotalAmount(it)}"
+            binding.amountToPay.text = "Amount to pay: ${getTotalAmount(it)}"
         }
         return binding.root
     }
@@ -43,13 +43,13 @@ class CartFragment : Fragment(), CartListener {
         var mAmount: Double = 0.0
 
         it!!.forEach {
-            mAmount += (it.price*it.quantity)
+            mAmount += (it.price * it.quantity)
         }
         return mAmount
     }
 
     override fun cartAdd(cart: ProductCart) {
-        var qty= cart.quantity+1
+        var qty = cart.quantity + 1
         val mCart: ProductCart = ProductCart(
             cart.title,
             cart.description,
@@ -76,34 +76,32 @@ class CartFragment : Fragment(), CartListener {
         if (qty >= 1) {
 
             cartViewModel.updateCart(mCart)
-        }else{
-            Toast.makeText(requireActivity(), "Quantity can't be less than 1",Toast.LENGTH_LONG).show()
-            showAlert("Are you Sure?","Do you want to delete this cart?", cart)
+        } else {
+            Toast.makeText(requireActivity(), "Quantity can't be less than 1", Toast.LENGTH_LONG)
+                .show()
+            showAlert("Are you Sure?", "Do you want to delete this cart?", cart)
         }
     }
 
     override fun cartDelete(cart: ProductCart) {
 
-        showAlert("Are you Sure?","Do you want to delete this cart?", cart)
+        showAlert("Are you Sure?", "Do you want to delete this cart?", cart)
     }
 
-    fun showAlert(title:String, msg: String, cart: ProductCart){
+    fun showAlert(title: String, msg: String, cart: ProductCart) {
 
-        val builder: AlertDialog.Builder =AlertDialog.Builder(requireActivity())
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
         builder.setTitle(title)
         builder.setMessage(msg)
         builder.setCancelable(true)
 
-        builder.setPositiveButton("Yes"){dialog, which->
+        builder.setPositiveButton("Yes") { dialog, which ->
 
             cartViewModel.deleteCart(cart)
         }
-
-        builder.setNegativeButton("No"){dialog, which->
-
+        builder.setNegativeButton("No") { dialog, which ->
         }
-
-        val alertDialog:AlertDialog = builder.create()
+        val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
 }
