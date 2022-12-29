@@ -23,7 +23,7 @@ class CartAdapter(
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        val cart = productList[position]
+        val cart: ProductCart = productList[position]
         holder.binding.cartItemName.text = cart.title
         holder.binding.cartItemPrice.text = cart.price.toString()
         holder.binding.cartItemQuantity.text = cart.quantity.toString()

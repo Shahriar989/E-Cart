@@ -33,7 +33,6 @@ class CartFragment : Fragment(), CartListener {
             binding.cartRecyclerView.adapter= adapter
             binding.cartRecyclerView.setHasFixedSize(true)
 
-
             binding.amountToPay.text= "Amount to pay: ${getTotalAmount(it)}"
         }
         return binding.root
